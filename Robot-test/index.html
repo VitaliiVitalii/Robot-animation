@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot Animation</title>
+    <link rel="stylesheet" href="./style.css" />
+</head>
+
+<body>
+    <section class="scene">
+        <!-- 🤖 Робот і прожектор -->
+        <svg class="robot-scene" id="robot-scene"  xmlns="http://www.w3.org/2000/svg">
+            <g id="robot" transform="translate(100, 400)">
+                <!-- 🔦 Промінь -->
+                <g id="beam-group" transform="translate(170, -100)" opacity="0.3">
+                    <path id="beam-shape" fill="#7ad1ed" fill-rule="evenodd"
+                    d="M5,49L32,522l668-33L70,2s-11.013.6-35,18C6.091,39.325,5,49,5,49Z" />
+                </g>
+                
+                <!-- 🧱 Тіло робота -->
+                <image class="robot-body" href="../Robot-animation/robot.png" x="0" y="-200" />
+                
+                <!-- 🚜 SVG гусениці -->
+                <g id="robot-tracks">
+                    <svg class="robot-tracks" id="robot-tracks" xmlns="http://www.w3.org/2000/svg" width="165" height="71" x="0" y="-90"
+                    viewBox="0 0 165 71">
+                    <defs>
+                        <style>
+                                .cls-1 {
+                                    fill: #a9bbc9;
+                                    fill-rule: evenodd;
+                                }
+                            </style>
+                        </defs>
+                        <path class="cls-1" d="M44.8,11.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_6" data-name="Rectangle 9 copy 6" class="cls-1"
+                            d="M30.8,13.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_7" data-name="Rectangle 9 copy 7" class="cls-1"
+                            d="M16.277,15.869l5.089-1.234,2.806,6.686L16.847,23.1Z" />
+                        <path id="Rectangle_9_copy_8" data-name="Rectangle 9 copy 8" class="cls-1"
+                            d="M5.379,23.807l4-3.384,5.505,4.719L9.129,30.013Z" />
+                        <path id="Rectangle_9_copy_9" data-name="Rectangle 9 copy 9" class="cls-1"
+                            d="M0.712,37.472l0.6-5.2,7.244-.326L7.693,39.432Z" />
+                        <path id="Rectangle_9_copy_10" data-name="Rectangle 9 copy 10" class="cls-1"
+                            d="M1.084,51.064l-0.242-5.23,7.1-1.48,0.348,7.529Z" />
+                        <path id="Rectangle_9_copy_11" data-name="Rectangle 9 copy 11" class="cls-1"
+                            d="M6.815,63.779l-2.982-4.3,5.229-5.023,4.293,6.2Z" />
+                        <path id="Rectangle_9_copy_12" data-name="Rectangle 9 copy 12" class="cls-1"
+                            d="M19.031,70.925l-4.539-2.611,2.572-6.779L23.6,65.293Z" />
+                        <path id="Rectangle_9_copy_19" data-name="Rectangle 9 copy 19" class="cls-1" d="M119,71h-4l-1.895-7L121,64Z" />
+                        <path id="Rectangle_9_copy_20" data-name="Rectangle 9 copy 20" class="cls-1" d="M133,71h-4l-1.895-7L135,64Z" />
+                        <path id="Rectangle_9_copy_24" data-name="Rectangle 9 copy 24" class="cls-1"
+                            d="M147.322,66.8l-3.616,1.71L139,62.985l7.138-3.373Z" />
+                        <path id="Rectangle_9_copy_25" data-name="Rectangle 9 copy 25" class="cls-1"
+                            d="M157.376,58.2l-2.543,3.087-6.609-2.99,5.022-6.091Z" />
+                        <path id="Rectangle_9_copy_26" data-name="Rectangle 9 copy 26" class="cls-1"
+                            d="M163.548,46.044l-0.932,3.89-7.251.211,1.841-7.677Z" />
+                        <path id="Rectangle_9_copy_27" data-name="Rectangle 9 copy 27" class="cls-1"
+                            d="M163.976,31.765l0.836,3.912-6.451,3.317-1.649-7.721Z" />
+                        <path id="Rectangle_9_copy_28" data-name="Rectangle 9 copy 28" class="cls-1"
+                            d="M161.633,20.47l1.212,3.812-6.1,3.927-2.39-7.524Z" />
+                        <path id="Rectangle_9_copy_29" data-name="Rectangle 9 copy 29" class="cls-1"
+                            d="M143.994,2.179l3.573,1.8-1.456,7.106L139.06,7.532Z" />
+                        <path id="Rectangle_9_copy_31" data-name="Rectangle 9 copy 31" class="cls-1"
+                            d="M155.462,8.672l2.755,2.9-3.773,6.2-5.435-5.726Z" />
+                        <path id="Rectangle_9_copy_30" data-name="Rectangle 9 copy 30" class="cls-1"
+                            d="M128.888,1l4,0.077,1.76,7.037-7.894-.154Z" />
+                        <path id="Rectangle_9_copy_21" data-name="Rectangle 9 copy 21" class="cls-1" d="M91,71H87l-1.895-7L93,64Z" />
+                        <path id="Rectangle_9_copy_21-2" data-name="Rectangle 9 copy 21" class="cls-1" d="M105,71h-4l-1.895-7L107,64Z" />
+                        <path id="Rectangle_9_copy_22" data-name="Rectangle 9 copy 22" class="cls-1" d="M63,71H59l-1.895-7L65,64Z" />
+                        <path id="Rectangle_9_copy_22-2" data-name="Rectangle 9 copy 22" class="cls-1" d="M77,71H73l-1.895-7L79,64Z" />
+                        <path id="Rectangle_9_copy_23" data-name="Rectangle 9 copy 23" class="cls-1" d="M36,71H32l-1.895-7L38,64Z" />
+                        <path id="Rectangle_9_copy_23-2" data-name="Rectangle 9 copy 23" class="cls-1" d="M50,71H46l-1.895-7L52,64Z" />
+                        <path id="Rectangle_9_copy" data-name="Rectangle 9 copy" class="cls-1"
+                            d="M58.8,9.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_2" data-name="Rectangle 9 copy 2" class="cls-1"
+                            d="M72.8,7.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_3" data-name="Rectangle 9 copy 3" class="cls-1"
+                            d="M86.8,5.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_4" data-name="Rectangle 9 copy 4" class="cls-1"
+                            d="M100.8,3.3l5.222-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_5" data-name="Rectangle 9 copy 5" class="cls-1"
+                            d="M114.8,1.3l5.222-.374,1.659,7.059-7.518.538Z" />
+                    </svg>
+                </g>
+            </g>
+        </svg>
+        <!-- 🖼️ Фон -->
+        <img class="ground" src="../Robot-animation/BG.png" alt="Background"/>
+        
+    <!-- 🖼️ Земля -->
+    <div class="ground">
+        <!-- Фонове зображення автоматично задається через CSS -->
+        <div class="ground-objects">
+            <svg xmlns="http://www.w3.org/2000/svg" class="objects-layer">
+                <g id="objects">
+                    <g id="object1" class="object" data-x="100" data-y="120">
+                        <image href="../Robot-animation/ammunition1-2.png" class="state state-dark" height="80" />
+                        <image href="../Robot-animation/ammunition1.png" class="state state-alert hidden" height="80" />
+                    </g>
+                    <g id="object2" class="object" data-x="500" data-y="80">
+                        <image href="../Robot-animation/ammunition2-2.png" class="state state-dark" height="120" />
+                        <image href="../Robot-animation/ammunition2-1.png" class="state state-alert hidden" height="120" />
+                    </g>
+                    <g id="object3" class="object" data-x="900" data-y="40">
+                        <image href="../Robot-animation/ammunition3-2.png" class="state state-dark" height="100" />
+                        <image href="../Robot-animation/ammunition3-1.png" class="state state-alert hidden" height="100" />
+                    </g>
+                    <g id="object4" class="object" data-x="1200" data-y="70">
+                        <image href="../Robot-animation/ammunition4-2.png" class="state state-dark" height="100" />
+                        <image href="../Robot-animation/ammunition4-1.png" class="state state-alert hidden" height="100" />
+                    </g>
+                </g>
+            </svg>
+        </div>
+    </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
