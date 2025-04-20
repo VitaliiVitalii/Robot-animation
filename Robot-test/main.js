@@ -135,36 +135,53 @@ function checkCollisions(x, activeObjs) {
 
 // --- Пилюка ---
 function spawnDust(x, y) {
-  const dust = dustGroup.cloneNode(true);
+  const svg = document.querySelector('svg');
+  const numParticles = 5;
 
-  dust.querySelectorAll('.dust-particle').forEach(p => {
-    const offsetX = (Math.random() - 0.5) * 20;
-    const offsetY = Math.random() * -15; // частинки летять вгору
+  // Динамічний зсув групи пилюки
+  const group = document.createElementNS("http://www.w3.org/2000/svg", "g");
+  const offsetX = goingRight ? -400 : 400;
+  group.setAttribute("transform", `translate(${offsetX}, -50)`);
+  svg.appendChild(group);
 
-    const finalX = x + offsetX + (Math.random() - 0.5) * 30; // розліт
-    const finalY = y + offsetY + Math.random() * -20;
+  for (let i = 0; i < numParticles; i++) {
+    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
-    p.setAttribute('cx', x);
-    p.setAttribute('cy', y);
+    const colors = ["#444", "#555", "#333", "#666", "#2b2b2b"];
+    const color = colors[Math.floor(Math.random() * colors.length)];
 
-    gsap.to(p, {
-      cx: finalX,
-      cy: finalY,
+    const radius = 2.5 + Math.random() * 2;
+    const offsetX = (Math.random() - 0.5) * 30;
+    const offsetY = Math.random() * -10;
+
+    const startX = x + offsetX;
+    const startY = y + offsetY;
+
+    circle.setAttribute("r", radius.toFixed(1));
+    circle.setAttribute("fill", color);
+    circle.setAttribute("opacity", "0.7");
+    circle.setAttribute("cx", startX);
+    circle.setAttribute("cy", startY);
+
+    group.appendChild(circle);
+
+    gsap.to(circle, {
+      cx: startX + (Math.random() - 0.5) * 20,
+      cy: startY - (Math.random() * 20 + 10),
       opacity: 0,
-      duration: 1.4 + Math.random() * 0.4,
-      ease: 'power2.out'
+      scale: 1.5,
+      duration: 1.2 + Math.random() * 0.4,
+      ease: "power1.out",
+      onComplete: () => {
+        circle.remove();
+        if (group.childNodes.length === 0) group.remove();
+      }
     });
-  });
-
-  document.querySelector('svg').appendChild(dust);
-
-  gsap.to(dust, {
-    opacity: 0,
-    duration: 1.8,
-    ease: 'power1.out',
-    onComplete: () => dust.remove()
-  });
+  }
 }
+
+
+
 
 
 
