@@ -9,7 +9,7 @@ const rightWheel = document.querySelector('#right-wheel');
 
 let SCENE_WIDTH = window.innerWidth;
 const beamOffsetX = 500;
-let robotSpeed = 300;
+let robotSpeed = 400;
 
 let goingRight = true;
 let lastRobotX = 0;
