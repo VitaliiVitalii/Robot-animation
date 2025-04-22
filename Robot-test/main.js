@@ -7,6 +7,7 @@ const dustGroup = document.querySelector('#dust-group');
 const leftWheel = document.querySelector('#left-wheel');
 const rightWheel = document.querySelector('#right-wheel');
 
+
 let SCENE_WIDTH = window.innerWidth;
 const beamOffsetX = 500;
 let robotSpeed = 400;
@@ -14,6 +15,13 @@ let robotSpeed = 400;
 let goingRight = true;
 let lastRobotX = 0;
 let trackOffset = 0;
+
+const robotPositions = {
+  desktop: { xStart: -500, xEnd: window.innerWidth + 500, y: 535 },
+  tablet: { xStart: -400, xEnd: window.innerWidth + 400, y: 545 },
+  mobile: { xStart: -300, xEnd: window.innerWidth + 300, y: 555 }
+};;
+
 
 function animateManipulator() {
   const baseAmplitudeY = 2 + Math.random(); // вертикальне тремтіння
@@ -69,39 +77,50 @@ window.addEventListener('resize', () => {
 const originalUndergroundObjects = [
   {
     element: document.querySelector("#object1"),
-    baseXRight: 0,
-    baseXLeft: 100,
+    baseXRightPercent: 0.05,
+    baseXLeftPercent: 0.15,
     shown: false
   },
   {
     element: document.querySelector("#object2"),
-    baseXRight: 180,
-    baseXLeft: 300,
+    baseXRightPercent: 0.20,
+    baseXLeftPercent: 0.35,
     shown: false
   },
   {
     element: document.querySelector("#object3"),
-    baseXRight: 580,
-    baseXLeft: 820,
+    baseXRightPercent: 0.50,
+    baseXLeftPercent: 0.70,
     shown: false
   },
   {
     element: document.querySelector("#object4"),
-    baseXRight: 820,
-    baseXLeft: 0,
+    baseXRightPercent: 0.80,
+    baseXLeftPercent: 0.05,
     shown: false
   },
+  {
+    element: document.querySelector("#object5"),
+    baseXRightPercent: 0.90,
+    baseXLeftPercent: 0.10,
+    shown: false
+  }
 ];
+
 
 // Отримання координат активних об'єктів з урахуванням напрямку
 function getCurrentTriggerXs() {
+  const width = window.innerWidth;
   return originalUndergroundObjects.map(obj => {
+    const percent = goingRight ? obj.baseXRightPercent : obj.baseXLeftPercent;
     return {
       ...obj,
-      triggerX: goingRight ? obj.baseXRight : obj.baseXLeft
+      triggerX: percent * width
     };
   });
 }
+
+
 
 function animateTracks(dx) {
   trackOffset += dx * 2;
@@ -182,20 +201,23 @@ function spawnDust(x, y) {
 
 
 
-
+function getFixedRobotPosition() {
+  const width = window.innerWidth;
+  if (width < 768) return robotPositions.mobile;
+  if (width < 1200) return robotPositions.tablet;
+  return robotPositions.desktop;
+}
 
 
 function moveRobot() {
   const activeObjects = getCurrentTriggerXs();
-  const fromX = goingRight ? -beamOffsetX : SCENE_WIDTH + beamOffsetX;
-  const toX = goingRight ? SCENE_WIDTH + beamOffsetX : -beamOffsetX;
-  const distance = Math.abs(toX - fromX);
+  const { xStart, xEnd, y } = getFixedRobotPosition();
+  const distance = Math.abs(xEnd - xStart);
   const duration = distance / robotSpeed;
-  const groundY = window.innerHeight * 0.65;
 
   gsap.set(robot, {
-    x: fromX,
-    y: groundY,
+    x: goingRight ? xStart : xEnd,
+    y: y,
     xPercent: -50,
     autoAlpha: 1,
     scaleX: goingRight ? 1 : -1,
@@ -203,7 +225,7 @@ function moveRobot() {
   });
 
   gsap.to(robot, {
-    x: toX,
+    x: goingRight ? xEnd : xStart,
     duration: duration,
     ease: 'none',
     onUpdate: function () {
@@ -212,12 +234,10 @@ function moveRobot() {
 
       animateTracks(dx);
 
-      // 🔄 Обертання коліс
-      const wheelRadius = 40; // Згідно з SVG
+      // Колеса
+      const wheelRadius = 40;
       const wheelCircumference = 2 * Math.PI * wheelRadius;
       const rotationDelta = (dx / wheelCircumference) * 360;
-
-      // Враховуємо напрямок
       const direction = goingRight ? 1 : -1;
       const currentRotation = gsap.getProperty(leftWheel, "rotation") || 0;
       const newRotation = currentRotation + rotationDelta * direction;
@@ -232,16 +252,14 @@ function moveRobot() {
         transformOrigin: "50% 50%"
       });
 
-      // 💨 Пилюка
+      // Пилюка
       if (Math.random() < 0.1) {
         const dustX = currentX + (goingRight ? -50 : 50);
-        const dustY = groundY + 20;
+        const dustY = y + 20;
         spawnDust(dustX, dustY);
       }
 
-      // 👀 Виявлення об’єктів
       checkCollisions(currentX, activeObjects);
-
       lastRobotX = currentX;
     },
     onComplete: () => {
@@ -251,7 +269,7 @@ function moveRobot() {
         onComplete: () => {
           goingRight = !goingRight;
           setTimeout(() => {
-            lastRobotX = goingRight ? -beamOffsetX : SCENE_WIDTH + beamOffsetX;
+            lastRobotX = goingRight ? xStart : xEnd;
             moveRobot();
           }, 100);
         }
@@ -261,17 +279,33 @@ function moveRobot() {
 }
 
 
+
+
+
 // Початкове позиціонування підземних об'єктів
 window.addEventListener('DOMContentLoaded', () => {
-  document.querySelectorAll('.object').forEach(obj => {
-    const x = obj.getAttribute('data-x');
-    const y = obj.getAttribute('data-y');
-    obj.setAttribute('transform', `translate(${x}, ${y})`);
-  });
-
+  positionUndergroundObjects();
   moveRobot();
   animateManipulator();
 });
+
+window.addEventListener('resize', () => {
+  SCENE_WIDTH = window.innerWidth;
+  positionUndergroundObjects();
+});
+
+function positionUndergroundObjects() {
+  const width = window.innerWidth;
+
+  originalUndergroundObjects.forEach(obj => {
+    const percent = goingRight ? obj.baseXRightPercent : obj.baseXLeftPercent;
+    const x = percent * width;
+    const y = obj.element.getAttribute('data-y') || 0;
+
+    obj.element.setAttribute('transform', `translate(${x}, ${y})`);
+  });
+}
+
 
 // Промінь: анімація пульсації та блюру
 gsap.to('#beam-group', {
@@ -282,11 +316,11 @@ gsap.to('#beam-group', {
   ease: 'sine.inOut'
 });
 
-gsap.to('#beam-shape', {
+/* gsap.to('#beam-shape', {
   scale: 1.04,
   duration: 1.2,
   repeat: -1,
   yoyo: true,
   transformOrigin: 'center center',
   ease: 'sine.inOut'
-});
+}); */
