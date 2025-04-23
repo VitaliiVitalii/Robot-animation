@@ -1,0 +1,96 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body,
+html {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+
+}
+
+.scene {
+    position: relative;
+    width: 100%;
+    height: 620px;
+    overflow: hidden;
+    top: 100px;
+
+}
+
+.robot-scene {
+    position: relative;
+    bottom: 260px;
+    width: 100%;
+    height: 100vh;
+    z-index: 2;
+}
+
+/* Земля */
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 400px;
+    z-index: 1;
+}
+
+.underground {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: auto;
+    z-index: 1;
+}
+
+/* Обʼєкти */
+.underground-objects {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 370px;
+    z-index: 90;
+    pointer-events: none;
+}
+
+.objects-layer {
+    width: 100vw;
+    height: 100%;
+}
+
+.object {
+    transform-origin: center;
+}
+
+.hidden {
+    display: none;
+}
+
+.revealed {
+    opacity: 1;
+    transform: scale(1);
+    transition: all 0.3s ease-out;
+}
+
+#scene {
+    overflow: hidden;
+}
+
+.wheels {
+    z-index: 4;
+}
+
+  
+
+
+
+@media screen and (min-width: 1024px) {
+    body {
+      /* background-color: blue; */
+    }
+  }
+

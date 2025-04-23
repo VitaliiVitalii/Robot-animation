@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="uk">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Robot Animation</title>
+    <link rel="stylesheet" href="/Robot-test/style.css" />
+</head>
+
+<body>
+    <section class="scene">
+        <!-- 🤖 Робот і прожектор -->
+        <svg class="robot-scene" id="robot-scene" xmlns="http://www.w3.org/2000/svg">
+            <g id="robot">
+                <!-- 🔦 Промінь -->
+                <g id="beam-group" transform="translate(182, -95)" opacity="0.3">
+                    <path id="beam-shape" fill="#7ad1ed" fill-rule="evenodd"
+                        d="M5,49L32,522l668-33L70,2s-11.013.6-35,18C6.091,39.325,5,49,5,49Z" />
+                </g>
+
+                <!-- Маніпулятор -->
+                <g id="manipulator-group" transform="translate(0, 0)">
+                    <image id="manipulator-base" href="../Robot-animation/manipulator.png" x="0" y="-190"
+                        preserveAspectRatio="xMidYMid meet" />
+                    <g id="arm-group" transform="translate(0, -30)">
+                        <image class="hook" id="manipulator-hook" href="../Robot-animation/hook.svg" x="0" y="-170" />
+                        <image id="manipulator-arm" href="../Robot-animation/hand.svg" x="0" y="-170" />
+                    </g>
+                </g>
+
+                <!-- 🧱 Тіло робота -->
+                <image class="robot-body" href="../Robot-animation/RobotV2.png" x="0" y="-200" />
+
+                <!-- Колеса -->
+                <!-- 🛞 праве колесо -->
+                <g id="right-wheel" class="wheels wheelRight" transform="translate(135, -75)">
+                    <path
+                        d="M0 0 C5.11076175 4.12710049 7.89713522 9.57187385 9 16 C9.31276303 22.10361783 8.16481263 27.13847631 4.66015625 32.17578125 C-0.27508141 37.59873651 -5.99068615 40.69159124 -13.25 41.25 C-21.06455064 40.72902996 -26.62562541 37.64523166 -32 32 C-36.04945587 26.33076178 -36.58429852 20.80932504 -36 14 C-34.87669296 7.91167587 -31.95576747 4.30792336 -27.1796875 0.4765625 C-18.25306405 -5.570505 -9.32285089 -5.19987393 0 0 Z"
+                        fill="#84919B" />
+                    <path
+                        d="M0 0 C3.65907504 0.68607657 5.35167676 1.98984314 8 4.5625 C9.55024464 7.66298928 9.28992015 10.14144218 9 13.5625 C7.20437595 16.31579021 5.94745078 18.08877461 3 19.5625 C0.1875 20 0.1875 20 -3 19.5625 C-5.94189213 17.00433293 -7.57072451 15.33845423 -8.484375 11.55859375 C-8.74798144 7.69968839 -8.09780076 5.70057166 -5.875 2.5625 C-3 0.5625 -3 0.5625 0 0 Z"
+                        fill="#374B58" transform="translate(-14, 8)" />
+                </g>
+
+                <!-- 🛞 ліве колесо -->
+                <g id="left-wheel" class="wheels wheelLeft" transform="translate(0, -200)">
+                    <path
+                        d="M0 0 C4.46664906 2.58073057 7.19341316 5.01153743 8.671875 10.09375 C9.48721412 17.50404731 9.37697441 23.15046653 4.671875 29.09375 C0.11903704 33.1171882 -4.35392211 34.35440458 -10.328125 34.09375 C-15.54492937 32.52870869 -18.93396253 30.36069711 -22.328125 26.09375 C-24.78215133 20.40487078 -24.69442867 15.05044083 -23.328125 9.09375 C-18.57964821 0.08801816 -9.79860083 -3.81422046 0 0 Z "
+                        fill="#829099" transform="translate(44.328125,134.90625)" />
+                    <path
+                        d="M0 0 C3.4375 1 3.4375 1 5.375 2.6875 C6.7988395 5.7864448 6.98903827 7.62182812 6.4375 11 C4.12012395 14.04569423 2.65924087 15.73181298 -1.125 16.5625 C-4.49723771 15.7842913 -5.6197794 14.87810459 -7.5625 12 C-8.38693434 7.93612165 -8.16831932 4.99354368 -6 1.4375 C-3.5625 0 -3.5625 0 0 0 Z "
+                        fill="#384B59" transform="translate(37.5625,143)" />
+                    <path
+                        d="M0 0 C2.62356846 1.7902629 3.67819338 2.95479007 5.5 5.6875 C5.17 6.6775 4.84 7.6675 4.5 8.6875 C3.79875 7.924375 3.0975 7.16125 2.375 6.375 C-1.56222549 2.69455008 -4.60706978 0.89031395 -10 0.3125 C-15.19695429 0.86931653 -18.29117402 2.31078152 -21.75 6.25 C-22.3275 7.054375 -22.905 7.85875 -23.5 8.6875 C-24.16 9.3475 -24.82 10.0075 -25.5 10.6875 C-25.06534864 5.76145127 -22.90373025 3.16858776 -19.5 -0.3125 C-13.63897023 -3.99657586 -5.77905791 -3.49480369 0 0 Z "
+                        fill="#5E6C77" transform="translate(46.5,136.3125)" />
+                    <path
+                        d="M0 0 C3.4375 0.1875 3.4375 0.1875 7 1 C8.4375 3.0625 8.4375 3.0625 9 5 C7.948125 4.62875 6.89625 4.2575 5.8125 3.875 C1.81367786 2.95723754 0.50871784 3.08615391 -3 5 C-1.125 1.125 -1.125 1.125 0 0 Z "
+                        fill="#304453" transform="translate(34,143)" />
+                </g>
+
+
+
+
+
+                <!-- 🚜 SVG гусениці -->
+                <g id="robot-tracks">
+                    <svg class="robot-tracks" id="robot-tracks" xmlns="http://www.w3.org/2000/svg" width="165"
+                        height="71" x="0" y="-90" viewBox="0 0 165 71">
+                        <defs>
+                            <style>
+                                .cls-1 {
+                                    fill: #a9bbc9;
+                                    fill-rule: evenodd;
+                                }
+                            </style>
+                        </defs>
+                        <path class="cls-1" d="M44.8,11.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_6" data-name="Rectangle 9 copy 6" class="cls-1"
+                            d="M30.8,13.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_7" data-name="Rectangle 9 copy 7" class="cls-1"
+                            d="M16.277,15.869l5.089-1.234,2.806,6.686L16.847,23.1Z" />
+                        <path id="Rectangle_9_copy_8" data-name="Rectangle 9 copy 8" class="cls-1"
+                            d="M5.379,23.807l4-3.384,5.505,4.719L9.129,30.013Z" />
+                        <path id="Rectangle_9_copy_9" data-name="Rectangle 9 copy 9" class="cls-1"
+                            d="M0.712,37.472l0.6-5.2,7.244-.326L7.693,39.432Z" />
+                        <path id="Rectangle_9_copy_10" data-name="Rectangle 9 copy 10" class="cls-1"
+                            d="M1.084,51.064l-0.242-5.23,7.1-1.48,0.348,7.529Z" />
+                        <path id="Rectangle_9_copy_11" data-name="Rectangle 9 copy 11" class="cls-1"
+                            d="M6.815,63.779l-2.982-4.3,5.229-5.023,4.293,6.2Z" />
+                        <path id="Rectangle_9_copy_12" data-name="Rectangle 9 copy 12" class="cls-1"
+                            d="M19.031,70.925l-4.539-2.611,2.572-6.779L23.6,65.293Z" />
+                        <path id="Rectangle_9_copy_19" data-name="Rectangle 9 copy 19" class="cls-1"
+                            d="M119,71h-4l-1.895-7L121,64Z" />
+                        <path id="Rectangle_9_copy_20" data-name="Rectangle 9 copy 20" class="cls-1"
+                            d="M133,71h-4l-1.895-7L135,64Z" />
+                        <path id="Rectangle_9_copy_24" data-name="Rectangle 9 copy 24" class="cls-1"
+                            d="M147.322,66.8l-3.616,1.71L139,62.985l7.138-3.373Z" />
+                        <path id="Rectangle_9_copy_25" data-name="Rectangle 9 copy 25" class="cls-1"
+                            d="M157.376,58.2l-2.543,3.087-6.609-2.99,5.022-6.091Z" />
+                        <path id="Rectangle_9_copy_26" data-name="Rectangle 9 copy 26" class="cls-1"
+                            d="M163.548,46.044l-0.932,3.89-7.251.211,1.841-7.677Z" />
+                        <path id="Rectangle_9_copy_27" data-name="Rectangle 9 copy 27" class="cls-1"
+                            d="M163.976,31.765l0.836,3.912-6.451,3.317-1.649-7.721Z" />
+                        <path id="Rectangle_9_copy_28" data-name="Rectangle 9 copy 28" class="cls-1"
+                            d="M161.633,20.47l1.212,3.812-6.1,3.927-2.39-7.524Z" />
+                        <path id="Rectangle_9_copy_29" data-name="Rectangle 9 copy 29" class="cls-1"
+                            d="M143.994,2.179l3.573,1.8-1.456,7.106L139.06,7.532Z" />
+                        <path id="Rectangle_9_copy_31" data-name="Rectangle 9 copy 31" class="cls-1"
+                            d="M155.462,8.672l2.755,2.9-3.773,6.2-5.435-5.726Z" />
+                        <path id="Rectangle_9_copy_30" data-name="Rectangle 9 copy 30" class="cls-1"
+                            d="M128.888,1l4,0.077,1.76,7.037-7.894-.154Z" />
+                        <path id="Rectangle_9_copy_21" data-name="Rectangle 9 copy 21" class="cls-1"
+                            d="M91,71H87l-1.895-7L93,64Z" />
+                        <path id="Rectangle_9_copy_21-2" data-name="Rectangle 9 copy 21" class="cls-1"
+                            d="M105,71h-4l-1.895-7L107,64Z" />
+                        <path id="Rectangle_9_copy_22" data-name="Rectangle 9 copy 22" class="cls-1"
+                            d="M63,71H59l-1.895-7L65,64Z" />
+                        <path id="Rectangle_9_copy_22-2" data-name="Rectangle 9 copy 22" class="cls-1"
+                            d="M77,71H73l-1.895-7L79,64Z" />
+                        <path id="Rectangle_9_copy_23" data-name="Rectangle 9 copy 23" class="cls-1"
+                            d="M36,71H32l-1.895-7L38,64Z" />
+                        <path id="Rectangle_9_copy_23-2" data-name="Rectangle 9 copy 23" class="cls-1"
+                            d="M50,71H46l-1.895-7L52,64Z" />
+                        <path id="Rectangle_9_copy" data-name="Rectangle 9 copy" class="cls-1"
+                            d="M58.8,9.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_2" data-name="Rectangle 9 copy 2" class="cls-1"
+                            d="M72.8,7.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_3" data-name="Rectangle 9 copy 3" class="cls-1"
+                            d="M86.8,5.3l5.223-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_4" data-name="Rectangle 9 copy 4" class="cls-1"
+                            d="M100.8,3.3l5.222-.374,1.659,7.059-7.518.538Z" />
+                        <path id="Rectangle_9_copy_5" data-name="Rectangle 9 copy 5" class="cls-1"
+                            d="M114.8,1.3l5.222-.374,1.659,7.059-7.518.538Z" />
+                    </svg>
+                </g>
+
+
+            </g>
+        </svg>
+        <!-- 🖼️ Фон -->
+        <img class="ground" src="../Robot-animation/BG.png" alt="Background" />
+
+        <!-- 🖼️ Земля -->
+        <div class="underground">
+            <div class="underground-objects">
+                <svg xmlns="http://www.w3.org/2000/svg" class="objects-layer">
+                    <g id="objects">
+                        <g id="object1" class="object" data-x="100" data-y="120">
+                            <image href="../Robot-animation/ammunition1-2.png" class="state state-dark" height="50" />
+                            <image href="../Robot-animation/ammunition1.png" class="state state-alert hidden"
+                                height="50" />
+                        </g>
+                        <g id="object2" class="object" data-x="500" data-y="150">
+                            <image href="../Robot-animation/ammunition2-2.png" class="state state-dark" height="90" />
+                            <image href="../Robot-animation/ammunition2-1.png" class="state state-alert hidden"
+                                height="90" />
+                        </g>
+                        <g id="object3" class="object" data-x="900" data-y="40">
+                            <image href="../Robot-animation/ammunition3-2.png" class="state state-dark" height="70" />
+                            <image href="../Robot-animation/ammunition3-1.png" class="state state-alert hidden"
+                                height="70" />
+                        </g>
+                        <g id="object4" class="object" data-x="-1000" data-y="30">
+                            <image href="../Robot-animation/ammunition4-2.png" class="state state-dark" height="70" />
+                            <image href="../Robot-animation/ammunition4-1.png" class="state state-alert hidden"
+                                height="70" />
+                        </g>
+                        <g id="object5" class="object" data-x="-1000" data-y="30">
+                            <image href="../Robot-animation/ammunition2-2.png" class="state state-dark" height="100" />
+                            <image href="../Robot-animation/ammunition2-1.png" class="state state-alert hidden"
+                                height="100" />
+                        </g>
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="./main.js"></script>
+</body>
+
+</html>
